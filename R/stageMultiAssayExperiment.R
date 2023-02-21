@@ -39,7 +39,7 @@
 #' @aliases stageObject,SampleMapFrame-method
 #' @import methods alabaster.base alabaster.se
 #' @importFrom MultiAssayExperiment MultiAssayExperiment
-#' @importFrom MultiAssayExperiment colData experiments sampleMap
+#' @importFrom MultiAssayExperiment colData sampleMap
 #' @importFrom S4Vectors DataFrame
 setMethod("stageObject", "MultiAssayExperiment", function(x, dir, path, child=FALSE, sm.name="sample_mapping", sd.name="sample_data", meta.name="dataset.json") {
     dir.create(file.path(dir, path), showWarnings=FALSE)
@@ -74,7 +74,7 @@ setMethod("stageObject", "MultiAssayExperiment", function(x, dir, path, child=FA
     })
 
     # Saving the experiments.
-    exp.info <- .stage_experiments(x, names(experiments(x)), dir, path)
+    exp.info <- .stage_experiments(x, dir, path)
 
     # Saving other metadata.
     meta.info <- .processMetadata(x, dir, path, "metadata")
@@ -93,13 +93,21 @@ setMethod("stageObject", "MultiAssayExperiment", function(x, dir, path, child=FA
 })
 
 #' @import alabaster.base 
+#' @importFrom MultiAssayExperiment experiments 
 #' @importMethodsFrom alabaster.se stageObject
-.stage_experiments <- function(x, experiments, dir, path) {
-    collected <- list()
+.stage_experiments <- function(x, dir, path) {
+    exp.names <- names(experiments(x))
+    if (anyDuplicated(exp.names)) {
+        stop("detected duplicated experiment names in a ", class(x)[1], " object")
+    }
+    if (any(exp.names == "")) {
+        stop("detected empty experiment name in a ", class(x)[1], " object")
+    }
 
-    for (i in seq_along(experiments)) {
+    collected <- list()
+    for (i in seq_along(exp.names)) {
         newname <- file.path(path, paste0("experiment-", i))
-        exp.name <- experiments[i]
+        exp.name <- exp.names[i]
         se <- x[[exp.name]]
         if (is.null(colnames(se)) || anyDuplicated(colnames(se))) {
             stop("column names of '<", class(x)[1], ">[[", i, "]]' should be non-NULL and unique")
