@@ -45,8 +45,8 @@ chip.se <- SummarizedExperiment(list(counts=chip.counts), rowRanges=chip.peaks)
 
 library(MultiAssayExperiment)
 mapping <- DataFrame(
-    primary = c(colnames(rna.se), colnames(chip.se)), # sample identifiers
     assay = rep(c("rnaseq", "chipseq"), c(ncol(rna.se), ncol(chip.se))), # experiment name
+    primary = c(colnames(rna.se), colnames(chip.se)), # sample identifiers
     colname = c(colnames(rna.se), colnames(chip.se)) # column names inside each experiment
 )
 mae <- MultiAssayExperiment(list(rnaseq=rna.se, chipseq=chip.se), sampleMap=mapping)
