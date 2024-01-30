@@ -88,9 +88,6 @@ setMethod("saveObject", "MultiAssayExperiment", function(x, path, ...) {
         colnames <- map$colname[keep]
         samples <- map$primary[keep]
 
-        if (anyDuplicated(samples)) {
-            stop("duplicated samples detected in 'sampleMap(<", class(x)[1], ">)'")
-        }
         i <- match(samples, rownames(sdata))
         if (anyNA(i)) {
             stop("samples in 'sampleMap(<", class(x)[1], ">)' are not present in 'colData(<", class(x)[1], ">)'")
