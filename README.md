@@ -1,16 +1,17 @@
 # Save `MultiAssayExperiment`s to file
 
+|Environment|Status|
+|---|---|
+|[BioC-release](https://bioconductor.org/packages/release/bioc/html/alabaster.mae.html)|[![Release OK](https://bioconductor.org/shields/build/release/bioc/alabaster.mae.svg)](http://bioconductor.org/checkResults/release/bioc-LATEST/alabaster.mae/)|
+|[BioC-devel](https://bioconductor.org/packages/devel/bioc/html/alabaster.mae.html)|[![Devel OK](https://bioconductor.org/shields/build/devel/bioc/alabaster.mae.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/alabaster.mae/)|
+
 The **alabaster.mae** package implements methods for saving and loading `MultiAssayExperiment` objects under the **alabaster** framework.
 It provides a language-agnostic method for serializing the sample mappings, sample data, and the various `SummarizedExperiment` instances nested within the MAE.
-To get started, install the package and its dependencies from GitHub:
+To get started, install the package and its dependencies from [Bioconductor](https://bioconductor.org/packages/alabaster.mae):
 
 ```r
-devtools::install_github("ArtifactDB/alabaster.schemas")
-devtools::install_github("ArtifactDB/alabaster.base")
-devtools::install_github("ArtifactDB/alabaster.ranges")
-devtools::install_github("ArtifactDB/alabaster.matrix")
-devtools::install_github("ArtifactDB/alabaster.se")
-devtools::install_github("ArtifactDB/alabaster.mae")
+# install.packages("BiocManager")
+BiocManager::install("alabaster.mae")
 ```
 
 To demonstrate, let's create a mildly complicated MAE containing RNA-seq and ChIP-seq data with partial overlaps:
@@ -44,16 +45,13 @@ Now we can just save it to file:
 ```r
 library(alabaster.mae)
 tmp <- tempfile()
-dir.create(tmp)
-meta <- stageObject(mae, tmp, "my_mae")
-meta[["$schema"]]
-## [1] "dataset/v1.json"
+saveObject(mae, tmp)
 ```
 
 And easily load it back:
 
 ```r
-roundtrip <- loadObject(meta, tmp)
+roundtrip <- readObject(tmp)
 roundtrip
 ## A MultiAssayExperiment object of 2 listed
 ##  experiments with user-defined names and respective classes.
