@@ -45,7 +45,7 @@ readMultiAssayExperiment <- function(path, metadata, ...) {
         experiments <- list()
 
         for (e in seq_along(exp.names)) {
-            ex <- readObject(file.path(edir, e-1L), ...)
+            ex <- altReadObject(file.path(edir, e-1L), ...)
             if (is.null(colnames(ex))) {
                 warning("generating non-NULL column names for experiment ", e)
                 colnames(ex) <- seq_len(ncol(ex))
@@ -60,7 +60,7 @@ readMultiAssayExperiment <- function(path, metadata, ...) {
     }
 
     # Obtaining the sample data.
-    sd <- readObject(file.path(path, "sample_data"), ...)
+    sd <- altReadObject(file.path(path, "sample_data"), ...)
     if (is.null(rownames(sd))) {
         warning("generating non-NULL sample names for the sample data")
         rownames(sd) <- seq_len(nrow(sd))
