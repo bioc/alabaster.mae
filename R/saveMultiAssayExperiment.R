@@ -60,7 +60,7 @@ setMethod("saveObject", "MultiAssayExperiment", function(x, path, ...) {
 
             ename <- as.character(e-1L)
             tryCatch({
-                saveObject(cur.exp, file.path(edir, ename), ...)
+                altSaveObject(cur.exp, file.path(edir, ename), ...)
             }, error=function(e) {
                 stop("failed to stage 'experiments(<", class(x)[1], ">)[[", e, "]]'\n  - ", e$message)
             })
@@ -72,7 +72,7 @@ setMethod("saveObject", "MultiAssayExperiment", function(x, path, ...) {
         stop("rownames of 'colData(<", class(x)[1], ">)' should be unique")
     }
     tryCatch({
-        saveObject(sdata, file.path(path, "sample_data"), ...)
+        altSaveObject(sdata, file.path(path, "sample_data"), ...)
     }, error=function(e) {
         stop("failed to stage 'colData(<", class(x)[1], ">)'\n  - ", e$message)
     })
