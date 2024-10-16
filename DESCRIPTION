@@ -1,7 +1,7 @@
 Package: alabaster.mae
 Title: Load and Save MultiAssayExperiments
-Version: 1.5.0
-Date: 2024-01-30
+Version: 1.5.1
+Date: 2024-10-16
 Authors@R: person("Aaron", "Lun", role=c("aut", "cre"), email="infinite.monkeys.with.keyboards@gmail.com")
 License: MIT + file LICENSE
 Description: 
