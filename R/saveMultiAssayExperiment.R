@@ -61,8 +61,8 @@ setMethod("saveObject", "MultiAssayExperiment", function(x, path, ...) {
             ename <- as.character(e-1L)
             tryCatch({
                 altSaveObject(cur.exp, file.path(edir, ename), ...)
-            }, error=function(e) {
-                stop("failed to stage 'experiments(<", class(x)[1], ">)[[", e, "]]'\n  - ", e$message)
+            }, error=function(err) {
+                stop("failed to stage 'experiments(<", class(x)[1], ">)[[", e, "]]'\n  - ", err$message)
             })
         }
     }

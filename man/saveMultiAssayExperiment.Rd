@@ -12,7 +12,7 @@
 
 \item{path}{String containing the path to a directory in which to save \code{x}.}
 
-\item{...}{Further arguments to pass to specific methods.}
+\item{...}{Additional named arguments to pass to specific methods.}
 }
 \value{
 The contents of \code{x} are saved into a \code{path}, and \code{NULL} is invisibly returned.
