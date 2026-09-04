@@ -103,6 +103,8 @@ readMultiAssayExperiment <- function(path, metadata, ...) {
 
 #' @export
 loadMultiAssayExperiment <- function(ds.info, project, experiments=NULL, BPPARAM=NULL, include.nested=TRUE) {
+    .Deprecated(new = "readMultiAssayExperiment", old = "loadMultiAssayExperiment")
+
     # Choosing the experiments to load.
     all.experiments <- ds.info$dataset$experiments
     keep <- .choose_experiments(experiments, all.experiments)

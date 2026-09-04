@@ -7,17 +7,23 @@ exportMethods(stageObject)
 import(alabaster.base)
 import(alabaster.se)
 import(methods)
-importFrom(MultiAssayExperiment,MultiAssayExperiment)
-importFrom(MultiAssayExperiment,colData)
-importFrom(MultiAssayExperiment,experiments)
-importFrom(MultiAssayExperiment,sampleMap)
+importFrom(MultiAssayExperiment,
+  MultiAssayExperiment,
+  colData,
+  experiments,
+  sampleMap
+)
 importFrom(S4Vectors,DataFrame)
-importFrom(jsonlite,fromJSON)
-importFrom(jsonlite,toJSON)
-importFrom(rhdf5,H5Fclose)
-importFrom(rhdf5,H5Fcreate)
-importFrom(rhdf5,H5Fopen)
-importFrom(rhdf5,H5Gclose)
-importFrom(rhdf5,H5Gcreate)
-importFrom(rhdf5,H5Gopen)
+importFrom(jsonlite,
+  fromJSON,
+  toJSON
+)
+importFrom(rhdf5,
+  H5Fclose,
+  H5Fcreate,
+  H5Fopen,
+  H5Gclose,
+  H5Gcreate,
+  H5Gopen
+)
 importMethodsFrom(alabaster.se,stageObject)

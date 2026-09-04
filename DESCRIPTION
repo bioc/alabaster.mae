@@ -1,7 +1,7 @@
 Package: alabaster.mae
 Title: Load and Save MultiAssayExperiments
-Version: 1.13.0
-Date: 2024-10-28
+Version: 1.13.1
+Date: 2026-09-04
 Authors@R: person("Aaron", "Lun", role=c("aut", "cre"), email="infinite.monkeys.with.keyboards@gmail.com")
 License: MIT + file LICENSE
 Description: 
@@ -26,7 +26,7 @@ Suggests:
     BiocStyle,
     rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.3.2
 biocViews:
     DataImport,
     DataRepresentation
+Config/roxygen2/version: 8.1.0
